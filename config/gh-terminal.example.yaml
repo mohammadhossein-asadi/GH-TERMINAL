@@ -1,0 +1,49 @@
+# GH-TERMINAL Setup Configuration Template
+# Copy to your platform config directory:
+#   Windows: %APPDATA%\gh-terminal\gh-terminal.yaml
+#   macOS:   ~/Library/Application Support/gh-terminal/gh-terminal.yaml
+#   Linux:   ~/.config/gh-terminal/gh-terminal.yaml
+
+version: 3.1.0
+
+git_identity:
+  name: ""
+  email: ""
+  signing_key: ""
+  gpg_format: ssh
+  sign_commits: true
+  sign_tags: true
+
+github:
+  protocol: ssh
+  editor: ""
+  pager: less -R
+  prompt: enabled
+  aliases: {}
+
+ssh:
+  key_type: ed25519
+  key_path: ""
+  comment: ""
+  use_agent: true
+  identities: []
+
+security:
+  require_2fa: true
+  require_signing: true
+  prefer_ssh: true
+  credential_helper: manager-core
+  token_expiry_days: 90
+  enable_dependabot: true
+  enable_secret_scanning: true
+  enable_code_scanning: true
+
+multi_account:
+  accounts: {}
+  default_account: ""
+  conditional_includes: {}
+
+ui:
+  theme: neon
+  show_progress: true
+  compact_mode: false
