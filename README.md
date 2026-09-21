@@ -60,6 +60,18 @@ pip install -e .
 
 ---
 
+## Screenshots
+
+All captured from the documented CLI output (regenerate with `scripts/make-cli-screenshots.py` in the portfolio repo):
+
+| Main Control Panel | Diagnostics (`doctor`) |
+|:---:|:---:|
+| ![Main Control Panel](docs/screenshot-1.png) | ![System diagnostics](docs/screenshot-2.png) |
+| **SSH commit signing** | **Multi-account manager** |
+| ![Commit signing setup](docs/screenshot-3.png) | ![Multi-account switching](docs/screenshot-4.png) |
+
+---
+
 ## Quick Start
 
 ```bash
