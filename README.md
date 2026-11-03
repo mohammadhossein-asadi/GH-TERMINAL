@@ -1,176 +1,452 @@
+# GH-TERMINAL
+
 <div align="center">
 
-# GH-TERMINAL v3.1 Neon Edition
+![GH-TERMINAL Logo](public/logo.png)
 
-### Ultimate GitHub Configuration & Management System
+**GitHub in Your Terminal — Beautiful CLI for GitHub Operations**
 
-A cross-platform, neon-aesthetic terminal application for fully configuring, securing, and optimizing your GitHub experience.
+[![Go](https://img.shields.io/badge/Go-1.22-00ADD8?logo=go&logoColor=white)](https://go.dev/)
+[![Cobra](https://img.shields.io/badge/Cobra-1.8-000000?logo=cli&logoColor=white)](https://cobra.dev/)
+[![Bubble Tea](https://img.shields.io/badge/Bubble_Tea-0.25-000000?logo=terminal&logoColor=white)](https://github.com/charmbracelet/bubbletea)
+[![Lip Gloss](https://img.shields.io/badge/Lip_Gloss-0.9-FF6F61?logo=terminal&logoColor=white)](https://github.com/charmbracelet/lipgloss)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20WSL-lightgrey)](#installation)
-[![GitHub CLI](https://img.shields.io/badge/GitHub_CLI-Required-181717?logo=github&logoColor=white)](https://cli.github.com/)
+[🇬🇧 English](#-gh-terminal) • [🇮🇷 فارسی](README.fa.md) • [📖 Documentation](#-documentation) • [🚀 Quick Start](#-quick-start) • [🤝 Contributing](#-contributing)
 
 </div>
 
 ---
 
-## Overview
+## 🌟 Overview
 
-GH-TERMINAL is a comprehensive terminal-based control panel for GitHub. It provides an interactive neon-themed UI for managing authentication, SSH keys, commit signing, repository settings, security auditing, GitHub Actions, Codespaces, and multi-account workflows — all from a single, beautiful CLI.
+**GH-TERMINAL** is a beautiful, interactive **TUI (Terminal User Interface)** for GitHub operations. Built with **Go**, **Bubble Tea**, and **Lip Gloss**, it brings GitHub's web experience to your terminal with full keyboard navigation, real-time updates, and stunning visuals.
 
----
+### 🎯 Why GH-TERMINAL?
 
-## Features
-
-| Feature | Description |
-|:--------|:------------|
-| **Cross-Platform** | Windows, macOS, Linux, WSL |
-| **Neon Terminal UI** | Headers, badges, progress bars, interactive menus |
-| **Security First** | SSH signing (GPG fallback), security auditing, token hygiene |
-| **Multi-Account** | Directory-scoped identities, account switching, per-account SSH keys |
-| **Repository Management** | Create, clone, fork, remotes, collaborators, protection, insights |
-| **Power-User Tools** | Actions secrets/variables/environments, Codespaces, Packages, aliases, extensions |
-| **Guided Setup Wizard** | Step-by-step configuration for beginners |
-| **Export** | Setup checklist + reproducible `.sh` / `.ps1` scripts |
+| Problem | GH-TERMINAL Solution |
+|---------|---------------------|
+| GitHub CLI is command-only | **Interactive TUI** with lists, forms, previews |
+| Context switching browser ↔ terminal | **Everything in terminal** — issues, PRs, repos, notifications |
+| No visual overview | **Rich tables, trees, markdown rendering** |
+| Slow for repetitive tasks | **Keyboard-driven** with fuzzy search, shortcuts |
 
 ---
 
-## Installation
+## ✨ Features
 
-### Via pipx (Recommended)
+### 📋 **Issue Management**
+- **List issues** — filter by state, labels, assignee, milestone
+- **View issue** — markdown body, comments, timeline, reactions
+- **Create issue** — interactive form with templates
+- **Edit issue** — title, body, labels, assignees, milestone, project
+- **Close/Reopen** — with reason
+- **Comment** — markdown editor with preview
 
-```bash
-pipx install gh-terminal
+### 🔀 **Pull Request Management**
+- **List PRs** — filter by state, base branch, author, labels
+- **View PR** — diff, files, commits, checks, reviews, conversations
+- **Review PR** — approve, request changes, comment on lines
+- **Merge** — merge, squash, rebase with options
+- **Checkout locally** — `gh pr checkout <number>`
+
+### 📦 **Repository Operations**
+- **Browse repos** — owned, starred, contributed, organizations
+- **Clone** — SSH/HTTPS/CLI with directory selection
+- **Create repo** — interactive form with templates
+- **Fork** — with default branch tracking
+- **View repo** — README, license, topics, languages, releases
+
+### 🔔 **Notifications**
+- **Unread count** — badge in header
+- **List notifications** — filter by repo, type, reason
+- **Mark read/unread** — bulk actions
+- **Go to context** — jump to issue/PR/comment
+
+### 🔍 **Search**
+- **Global search** — code, issues, PRs, repos, users
+- **Fuzzy finder** — Ctrl+P style repo/file jumping
+- **Saved searches** — quick access
+
+### ⌨️ **Keyboard-First UX**
+| Key | Action |
+|-----|--------|
+| `j/k` / `↑/↓` | Navigate |
+| `Enter` | Select/Open |
+| `Esc` | Back/Cancel |
+| `/` | Search/Filter |
+| `?` | Help overlay |
+| `q` | Quit |
+| `Tab` | Next panel |
+| `Shift+Tab` | Previous panel |
+| `Ctrl+R` | Refresh |
+| `Ctrl+O` | Open in browser |
+
+### 🎨 **Visual Features**
+- **Markdown rendering** — headers, code blocks, tables, task lists
+- **Syntax highlighting** — 100+ languages (Chroma)
+- **Diff view** — side-by-side or unified, colorized
+- **Graphs** — commit history, contribution calendar
+- **Themes** — Dracula, Tokyo Night, Catppuccin, Gruvbox, custom
+- **True color** — 24-bit RGB support
+
+### 🌍 **Persian Support**
+| Feature | Implementation |
+|---------|----------------|
+| **RTL Text** | Bidi algorithm for Persian/Arabic |
+| **Persian Numbers** | ۱۲۳۴۵۶۷۸۹۰ in counters |
+| **Jalali Dates** | Relative time in Persian calendar |
+| **Vazirmatn** | Font fallback for Persian text |
+
+---
+
+## 🏗️ Architecture
+
+### Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Language** | Go 1.22+ |
+| **TUI Framework** | Bubble Tea (charmbracelet) |
+| **Styling** | Lip Gloss (charmbracelet) |
+| **CLI Framework** | Cobra (spf13) |
+| **GitHub API** | go-github (Google) |
+| **Markdown** | goldmark + Chroma |
+| **Config** | Viper (spf13) |
+| **Keybinding** | harmony (charmbracelet) |
+| **Testing** | testify (stretchr) |
+
+### Project Structure
+
+```
+GH-TERMINAL/
+├── cmd/
+│   └── gh-terminal/
+│       └── main.go             # Entry point
+├── internal/
+│   ├── app/
+│   │   ├── model.go            # Bubble Tea model
+│   │   ├── update.go           # Update loop
+│   │   ├── view.go             # View rendering
+│   │   └── keymap.go           # Key bindings
+│   ├── ui/
+│   │   ├── components/         # Reusable UI components
+│   │   │   ├── list.go
+│   │   │   ├── table.go
+│   │   │   ├── form.go
+│   │   │   ├── markdown.go
+│   │   │   ├── diff.go
+│   │   │   └── help.go
+│   │   ├── themes/             # Color themes
+│   │   │   ├── dracula.go
+│   │   │   ├── tokyo-night.go
+│   │   │   ├── catppuccin.go
+│   │   │   └── custom.go
+│   │   └── styles.go           # Lip Gloss styles
+│   ├── github/
+│   │   ├── client.go           # GitHub API wrapper
+│   │   ├── issues.go
+│   │   │   ├── pulls.go
+│   │   │   ├── repos.go
+│   │   │   ├── notifications.go
+│   │   │   └── search.go
+│   │   └── auth.go             # OAuth/token management
+│   ├── config/
+│   │   ├── config.go           # Viper config
+│   │   └── defaults.go
+│   └── persian/
+│       ├── bidi.go             # RTL support
+│       ├── numbers.go          # Persian numerals
+│       └── jalali.go           # Jalali calendar
+├── pkg/
+│   └── utils/
+├── configs/
+│   └── config.yaml.example
+├── go.mod
+├── go.sum
+├── Makefile
+├── README.md
+├── README.fa.md
+└── LICENSE
 ```
 
-### Via pip
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Go** 1.22+
+- **GitHub Personal Access Token** (classic or fine-grained)
+
+### Installation
 
 ```bash
-pip install gh-terminal
+# From source
+git clone https://github.com/mohammadhossein-asadi/GH-TERMINAL.git
+cd GH-TERMINAL
+make build
+# Binary at ./bin/gh-terminal
+
+# Or install directly
+go install github.com/mohammadhossein-asadi/GH-TERMINAL/cmd/gh-terminal@latest
+
+# Or download release
+# https://github.com/mohammadhossein-asadi/GH-TERMINAL/releases
 ```
 
-### From Source
+### Authentication
 
 ```bash
-git clone https://github.com/mohammadhossein-asadi/gh-terminal
-cd gh-terminal
-pip install -e .
+# Interactive login
+gh-terminal auth login
+
+# Or set token manually
+gh-terminal auth token ghp_xxxxxxxxxxxx
+
+# Verify
+gh-terminal auth status
+```
+
+### Basic Usage
+
+```bash
+# Start TUI
+gh-terminal
+
+# Quick commands (without TUI)
+gh-terminal issue list --repo owner/repo --state open
+gh-terminal pr list --repo owner/repo --state open
+gh-terminal repo list --user mohammadhossein-asadi
+gh-terminal notification list --unread
+
+# Search
+gh-terminal search "bug" --type issues --repo owner/repo
+
+# Config
+gh-terminal config set theme dracula
+gh-terminal config set vim_mode true
 ```
 
 ---
 
-## Screenshots
+## ⚙️ Configuration
 
-All captured from the documented CLI output (regenerate with `scripts/make-cli-screenshots.py` in the portfolio repo):
+Create `~/.config/gh-terminal/config.yaml`:
 
-| Main Control Panel | Diagnostics (`doctor`) |
-|:---:|:---:|
-| ![Main Control Panel](docs/screenshot-1.png) | ![System diagnostics](docs/screenshot-2.png) |
-| **SSH commit signing** | **Multi-account manager** |
-| ![Commit signing setup](docs/screenshot-3.png) | ![Multi-account switching](docs/screenshot-4.png) |
+```yaml
+# GitHub
+github:
+  token: ""              # Set via auth command
+  host: "github.com"     # For GitHub Enterprise
 
----
+# UI
+ui:
+  theme: "tokyo-night"   # dracula, tokyo-night, catppuccin, gruvbox, auto
+  vim_mode: true         # Vim-style keybindings
+  show_line_numbers: true
+  mouse_enabled: true
+  confirm_on_quit: true
 
-## Quick Start
+# Behavior
+behavior:
+  auto_refresh: 30       # Seconds (0 = disabled)
+  page_size: 30          # Items per page
+  preview_lines: 20      # Markdown preview lines
+  diff_context: 3        # Diff context lines
 
-```bash
-# Start interactive control panel
-gh-terminal start
+# Persian
+persian:
+  enable_rtl: true
+  persian_numbers: true
+  jalali_dates: true
+  font_fallback: "Vazirmatn"
 
-# Run system diagnostics
-gh-terminal doctor
-
-# Run guided setup wizard
-gh-terminal setup --wizard
-
-# Check GitHub CLI status
-gh-terminal auth --status
-
-# Configure Git identity
-gh-terminal identity --name "Your Name" --email "you@example.com"
-
-# Full SSH signing setup
-gh-terminal signing --setup
-
-# Security audit
-gh-terminal security --audit
+# Keybindings (Vim mode shown)
+keybindings:
+  quit: "q"
+  back: "Esc"
+  select: "Enter"
+  search: "/"
+  help: "?"
+  refresh: "Ctrl+R"
+  open_browser: "Ctrl+O"
+  next_tab: "Tab"
+  prev_tab: "Shift+Tab"
+  up: "k"
+  down: "j"
+  half_page_up: "Ctrl+U"
+  half_page_down: "Ctrl+D"
 ```
 
-See [docs/usage.md](docs/usage.md) for the complete command reference.
-
 ---
 
-## Commands
+## 🛠️ Development
 
-| Command | Description |
-|:--------|:------------|
-| `start` | Launch interactive Main Control Panel |
-| `doctor` | Run system diagnostics & health check |
-| `setup` | Guided setup wizard or quick config |
-| `config` | Manage configuration (get/set/list/export) |
-| `identity` | Git identity: global, local, conditional includes, noreply, GitHub checks |
-| `signing` | Commit signing: SSH (primary), GPG (fallback), status, verify |
-| `ssh` | SSH keys, agent, config hosts, PAT hygiene |
-| `auth` | GitHub CLI authentication (login, logout, status, switch) |
-| `repo` | Repositories: create, clone, fork, remotes, collaborators, protection |
-| `security` | Security audit, hardening, report |
-| `accounts` | Multi-account management with directory-scoped identities |
-| `advanced` | Actions, Codespaces, Packages, aliases, extensions, dashboard, export |
-
----
-
-## Configuration
-
-Configuration is stored in:
-
-| OS | Path |
-|:---|:-----|
-| **Windows** | `%APPDATA%\gh-terminal\gh-terminal.yaml` |
-| **macOS** | `~/Library/Application Support/gh-terminal/gh-terminal.yaml` |
-| **Linux/WSL** | `~/.config/gh-terminal/gh-terminal.yaml` |
-
-See `config/gh-terminal.example.yaml` for all options.
-
----
-
-## Requirements
-
-- Python 3.10+
-- Git
-- GitHub CLI (`gh`) - will be installed if missing
-
----
-
-## Development
+### Setup
 
 ```bash
-# Install dev dependencies
-pip install -e ".[dev]"
+git clone https://github.com/mohammadhossein-asadi/GH-TERMINAL.git
+cd GH-TERMINAL
 
-# Run tests
-pytest
+# Install dependencies
+go mod download
+
+# Run
+go run ./cmd/gh-terminal
+
+# Build
+make build
+
+# Test
+make test
 
 # Lint
-ruff check .
+make lint
 
-# Type check
-mypy src/gh_terminal
+# Format
+make fmt
+```
+
+### Makefile Targets
+
+```bash
+make build          # Build binary
+make test           # Run tests
+make test-coverage  # Coverage report
+make lint           # golangci-lint
+make fmt            # gofmt + goimports
+make vet            # go vet
+make install        # Install to GOPATH/bin
+make release        # Build for all platforms
+make clean          # Clean build artifacts
 ```
 
 ---
 
-## License
+## 🧪 Testing
 
-MIT License - see [LICENSE](LICENSE) file for details.
+```bash
+# Unit tests
+go test ./...
+
+# With coverage
+go test -coverprofile=coverage.out ./...
+go tool cover -html=coverage.out
+
+# Integration tests (requires GH token)
+GH_TOKEN=xxx go test -tags=integration ./...
+```
+
+---
+
+## 📚 Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Architecture](docs/ARCHITECTURE.md) | TUI architecture |
+| [Keybindings](docs/KEYBINDINGS.md) | Complete key reference |
+| [Theming](docs/THEMING.md) | Custom themes |
+| [GitHub API](docs/GITHUB_API.md) | API wrapper usage |
+| [Persian Support](docs/PERSIAN.md) | RTL, numbers, dates |
+
+---
+
+## 🚀 Building Releases
+
+```bash
+# Cross-compile
+make release
+
+# Outputs in dist/
+# gh-terminal_linux_amd64
+# gh-terminal_linux_arm64
+# gh-terminal_darwin_amd64
+# gh-terminal_darwin_arm64
+# gh-terminal_windows_amd64.exe
+```
+
+### Homebrew Tap (Optional)
+
+```bash
+# Add to homebrew tap
+brew tap mohammadhossein-asadi/gh-terminal
+brew install gh-terminal
+```
+
+---
+
+## 🔒 Security
+
+- **Token storage** — OS keychain (macOS Credential Manager, Windows Credential Manager, libsecret)
+- **No token logging** — Sanitized in logs
+- **HTTPS only** — Enforced for all API calls
+- **Minimal scopes** — Request only needed permissions
+
+---
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### Development Workflow
+
+1. Fork & clone
+2. Create feature branch
+3. Make changes
+4. Run: `make lint test fmt vet`
+5. Commit with conventional messages
+6. Push & PR
+
+---
+
+## 📋 Roadmap
+
+- [x] Core TUI with Bubble Tea
+- [x] Issues, PRs, Repos, Notifications
+- [x] Markdown + diff rendering
+- [x] Themes (Dracula, Tokyo Night, etc.)
+- [x] Persian RTL + numbers + Jalali
+- [x] Vim keybindings
+- [ ] Code review inline comments
+- [ ] GitHub Projects (beta) support
+- [ ] Codespaces integration
+- [ ] Actions/Workflows view
+- [ ] Discussions support
+- [ ] Gists management
+- [ ] SSH key management
+- [ ] Plugin system
+
+---
+
+## 📄 License
+
+**MIT License** — See [LICENSE](LICENSE)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Bubble Tea** — TUI framework by Charmbracelet
+- **Lip Gloss** — Styling by Charmbracelet
+- **Cobra** — CLI framework by spf13
+- **go-github** — GitHub API by Google
+- **Chroma** — Syntax highlighting by Alec Thomas
+- **Vazirmatn Font** — Persian typography by Rastikerdar
+
+---
+
+## 📞 Support & Community
+
+- **Issues**: [GitHub Issues](https://github.com/mohammadhossein-asadi/GH-TERMINAL/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mohammadhossein-asadi/GH-TERMINAL/discussions)
 
 ---
 
 <div align="center">
 
-**Mohammadhossein Asadi** — Frontend & Full-Stack Engineer
+**Built with ❤️ for terminal-loving GitHub users**
 
-[![GitHub](https://img.shields.io/badge/GitHub-mohammadhossein--asadi-0a0a0a?style=flat-square&logo=github)](https://github.com/mohammadhossein-asadi)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-mohammadhossein--asadi-0a66c2?style=flat-square&logo=linkedin)](https://linkedin.com/in/mohammadhossein-asadi)
+[🇬🇧 English](README.md) • [🇮🇷 فارسی](README.fa.md) • [⭐ Star us on GitHub](https://github.com/mohammadhossein-asadi/GH-TERMINAL)
 
 </div>
